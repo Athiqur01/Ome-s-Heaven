@@ -9,7 +9,7 @@ const Navbar = () => {
     const {user, logOut,loading,setLoading}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
 
-    const { data:loggedUser2}=useQuery({
+    const {refetch, data:loggedUser2}=useQuery({
         queryKey:['loggedUser2'],
         queryFn: async()=>{
             if(loading){
@@ -20,6 +20,8 @@ const Navbar = () => {
             return res.data
         }
       })
+
+      refetch()
      
       console.log('looggg',loggedUser2)
 

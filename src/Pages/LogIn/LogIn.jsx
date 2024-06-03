@@ -2,17 +2,22 @@ import { useContext } from "react";
 import img from "../../assets/login.jpg"
 import { useForm } from "react-hook-form"
 import AuthProvider, { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../assets/CustomHooks/useAxiosSecure/useAxiosSecure";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
 
     const {loginUser,setLoading,setUser,user}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
     const queryClient = new QueryClient()
+    const location=useLocation()
+    const navigate=useNavigate()
+    const form=location.state?.form?.pathname||"/"
+    console.log(location)
 
     const {
         register,
@@ -27,6 +32,17 @@ const LogIn = () => {
             console.log(result.user)
             setUser(result.user)
             setLoading(false)
+            if(result.user){
+              navigate(form,{replace:true})
+
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Login successful",
+                showConfirmButton: false,
+                timer: 3500
+              })
+            }
         })
       }
 
@@ -38,18 +54,13 @@ const LogIn = () => {
         }
       })
 
-      const { data:loggedUser2}=useQuery({
-        queryKey:['loggedUser2'],
-        queryFn: async()=>{
-            const res=await axiosSecure.get(`/users?email=${user?.email}`)
-            return res.data
-        }
-      })
+      
 
+      
     
 
       console.log('allUser',allUser)
-      console.log('looggg',loggedUser2)
+      
 
     return (
         <div>

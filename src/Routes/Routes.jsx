@@ -7,6 +7,7 @@ import Home from "../Pages/Home/Home/Home";
 import Apartment from "../Pages/Apartment/Apartment";
 import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
+import DeshBoard from "../Loyout/DeshBoard/DeshBoard";
 
 export const router = createBrowserRouter([
     {
@@ -31,4 +32,11 @@ export const router = createBrowserRouter([
         }
       ],
     },
+    {
+      path: "/deshBoard",
+      element: <DeshBoard></DeshBoard>,
+      children:[
+        
+      ]
+    }
   ]);
