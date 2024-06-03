@@ -8,6 +8,8 @@ import Apartment from "../Pages/Apartment/Apartment";
 import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
 import DeshBoard from "../Loyout/DeshBoard/DeshBoard";
+import MyProfile from "../Pages/DeshBoardPage/MyProfile/MyProfile";
+import Announcement from "../Pages/DeshBoardPage/Announcement/Announcement";
 
 export const router = createBrowserRouter([
     {
@@ -36,7 +38,14 @@ export const router = createBrowserRouter([
       path: "/deshBoard",
       element: <DeshBoard></DeshBoard>,
       children:[
-        
+        {
+          path: "/deshBoard/myProfile",
+          element:<MyProfile></MyProfile>
+        },
+        {
+          path: "/deshBoard/announcement",
+          element:<Announcement></Announcement>
+        }
       ]
     }
   ]);

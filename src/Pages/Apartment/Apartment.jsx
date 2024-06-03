@@ -1,9 +1,16 @@
 import {  useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../assets/CustomHooks/useAxiosSecure/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import useLoggedUser from "../../assets/CustomHooks/useLoggedUser/useLoggedUser";
 
 
 const Apartment = () => {
+  const [loggedUser]=useLoggedUser()
+  const {user}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
+    
 
     const {data:apartment}=useQuery({
         queryKey:['apartment'],
@@ -13,7 +20,38 @@ const Apartment = () => {
         }
     })
 
-    console.log(apartment)
+    
+    //const email=user?.email
+    const agreementDate = new Date();
+    const status='pending'
+    const displayName=loggedUser?.displayName
+    const email=loggedUser?.email
+    const photoURL=loggedUser?.photoURL
+    console.log(displayName,email,loggedUser?.displayName
+    )
+    
+    
+    
+
+    const handleAgreement=(floorNo,blockName,apartmentNo,rent)=>{
+
+     const agreementInfo={email,displayName,photoURL, floorNo,blockName,apartmentNo,rent,agreementDate,status}
+     console.log('info',agreementInfo)
+     axiosSecure.post('/agreementInfo',agreementInfo)
+     .then(res=>{
+      if(res.data.insertedId){
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Agreemet Request Sent",
+          showConfirmButton: false,
+          timer: 3500
+        });
+      }
+     })
+    }
+
+
 
     return (
         <div>
@@ -30,7 +68,7 @@ const Apartment = () => {
     <h4>Rent: {singleApartment.rent} $USD</h4>
     
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Agreement</button>
+      <button onClick={()=>handleAgreement(singleApartment.floor_no,singleApartment.block_name,singleApartment.apartment_no,singleApartment.rent)} className="btn btn-primary">Agreement</button>
     </div>
   </div>
 </div>
