@@ -22,7 +22,7 @@ const Apartment = () => {
 
     
     //const email=user?.email
-    const agreementDate = new Date();
+    const agreementReqDate = new Date();
     const status='pending'
     const displayName=loggedUser?.displayName
     const email=loggedUser?.email
@@ -35,7 +35,7 @@ const Apartment = () => {
 
     const handleAgreement=(floorNo,blockName,apartmentNo,rent)=>{
 
-     const agreementInfo={email,displayName,photoURL, floorNo,blockName,apartmentNo,rent,agreementDate,status}
+     const agreementInfo={email,displayName,photoURL, floorNo,blockName,apartmentNo,rent,agreementReqDate,status}
      console.log('info',agreementInfo)
      axiosSecure.post('/agreementInfo',agreementInfo)
      .then(res=>{

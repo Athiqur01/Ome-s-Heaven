@@ -11,20 +11,38 @@ const MyProfile = () => {
    const axiosSecure=useAxiosSecure()
    const [loggedUser]=useLoggedUser()
    const [agreementData, setAgreementData]=useState()
+   const {userStatus, setUserStatus,user,loading, setLoading}=useContext(AuthContext)
    
    
 
-    console.log('logged-------',agreementData)
+    //console.log('logged-------',userStatus)
     
 
     useEffect(()=>{
+      setLoading(true)
         axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
         .then(res=>{
             console.log('jjj',res.data)
             setAgreementData(res.data)
+            setLoading(false)
         })
     },[loggedUser?.email])
 
+
+
+
+    useEffect(()=>{
+        setLoading(true)
+        axiosSecure.get(`/users?email=${loggedUser?.email}`)
+        .then(res=>{
+            console.log('kk',res.data.userStatus)
+            setUserStatus(res.data.userStatus)
+            setLoading(false)
+        })
+    },[loggedUser?.email])
+
+
+    
    
 
     
@@ -86,8 +104,8 @@ const MyProfile = () => {
         </tr>
 
         <tr>
-            <td>Agreement Date</td>
-        <td>{agreementData?.agreementDate}</td>
+            <td>Agreement Request Date</td>
+        <td>{agreementData?.agreementReqDate}</td>
         </tr>
 
         <tr>

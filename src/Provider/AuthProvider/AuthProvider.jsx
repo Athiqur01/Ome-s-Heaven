@@ -11,6 +11,7 @@ const auth=getAuth(app)
 const AuthProvider = ({children}) => {
     const [user, setUser]=useState(null)
     const [loading, setLoading]=useState(true)
+    const [userStatus, setUserStatus]=useState()
     
     
    
@@ -41,7 +42,7 @@ const AuthProvider = ({children}) => {
         }
     },[])
 
-    const authInfo={user,setUser, loading,setLoading, createUser, loginUser, logOut}
+    const authInfo={user,setUser, loading,setLoading, createUser, loginUser, logOut,userStatus, setUserStatus}
 
     return (
         <AuthContext.Provider value={authInfo}>

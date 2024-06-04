@@ -10,6 +10,8 @@ import Register from "../Pages/Register/Register";
 import DeshBoard from "../Loyout/DeshBoard/DeshBoard";
 import MyProfile from "../Pages/DeshBoardPage/MyProfile/MyProfile";
 import Announcement from "../Pages/DeshBoardPage/Announcement/Announcement";
+import AdminProfile from "../Pages/DeshBoardPage/AdminProfile/AdminProfile";
+import AgreementReq from "../Pages/DeshBoardPage/AgreementReq/AgreementReq";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +47,15 @@ export const router = createBrowserRouter([
         {
           path: "/deshBoard/announcement",
           element:<Announcement></Announcement>
-        }
+        },
+        {
+          path: "/deshBoard/adminProfile",
+          element:<AdminProfile></AdminProfile>
+        },
+        {
+          path: "/deshBoard/agreementReq",
+          element:<AgreementReq></AgreementReq>
+        },
       ]
     }
   ]);
