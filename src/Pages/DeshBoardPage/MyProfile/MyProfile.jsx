@@ -52,17 +52,17 @@ const MyProfile = () => {
       {/* row 1 */}
       <tr className="bg-base-200">
         <td>Photo</td>
-        <td><img className='max-w-32 max-h-32' src={agreementData?.photoURL} alt="" /></td>
+        <td><img className='max-w-32 max-h-32' src={loggedUser?.photoURL} alt="" /></td>
       </tr>
 
       <tr>
       <td>Name</td>
-        <td>{agreementData?.displayName}</td>
+        <td>{loggedUser?.displayName}</td>
         </tr>
 
         <tr>
         <td>Email</td>
-        <td>{agreementData?.email}</td>
+        <td>{loggedUser?.email}</td>
         </tr>
 
         <tr>

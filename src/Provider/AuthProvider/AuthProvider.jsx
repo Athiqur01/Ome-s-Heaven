@@ -2,14 +2,17 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import { createContext, useEffect, useState } from "react";
 import { app } from "../../Firebase/firebase.config";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext=createContext(null)
 const auth=getAuth(app)
 
+
 const AuthProvider = ({children}) => {
     const [user, setUser]=useState(null)
     const [loading, setLoading]=useState(true)
-
+    
+    
    
 
     const createUser=(email,password)=>{

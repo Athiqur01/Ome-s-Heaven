@@ -10,7 +10,7 @@ const Register = () => {
     const {createUser,user,setUser,setLoading}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
     //const [data, setData]=useContext(null)
-    
+    const userStatus='user'
 
     const {
         register,
@@ -22,9 +22,9 @@ const Register = () => {
         console.log(data)
         //setData(data)
          const {email,displayName,photoURL}=data 
-         const userData={email,displayName,photoURL}      
+         const userData={email,displayName,photoURL,userStatus}      
         
-        createUser(data.email,data.password)
+        createUser(data?.email,data?.password)
         .then(result=>{
             
             console.log(result.user)
