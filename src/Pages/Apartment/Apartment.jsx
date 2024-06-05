@@ -8,17 +8,21 @@ import useLoggedUser from "../../assets/CustomHooks/useLoggedUser/useLoggedUser"
 
 const Apartment = () => {
   const [loggedUser]=useLoggedUser()
-  const {user}=useContext(AuthContext)
+  const {user,setLoading}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
     
 
     const {data:apartment}=useQuery({
         queryKey:['apartment'],
         queryFn:async()=>{
+          setLoading(true)
             const res=await axiosSecure.get('/apartment')
+            setLoading(false)
             return res.data
         }
     })
+
+    
 
     
     //const email=user?.email

@@ -19,7 +19,7 @@ const MyProfile = () => {
     
 
     useEffect(()=>{
-      setLoading(true)
+      
         axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
         .then(res=>{
             console.log('jjj',res.data)
@@ -32,7 +32,7 @@ const MyProfile = () => {
 
 
     useEffect(()=>{
-        setLoading(true)
+        
         axiosSecure.get(`/users?email=${loggedUser?.email}`)
         .then(res=>{
             console.log('kk',res.data.userStatus)

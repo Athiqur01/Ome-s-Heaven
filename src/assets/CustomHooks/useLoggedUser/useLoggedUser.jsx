@@ -11,8 +11,7 @@ const useLoggedUser = () => {
     const [loggedUser, setloggeduser]=useState(null)
 
     useEffect(()=>{
-        setLoading(true)
-    
+        
         axios.get(`http://localhost:5020/users?email=${user?.email}`)
         .then(res=>{
             //console.log(res.data)
@@ -20,7 +19,7 @@ const useLoggedUser = () => {
             setLoading(false)
         })
 
-    },[user?.email])
+    },[user?.email,setLoading])
 
     return [loggedUser]
 };

@@ -50,6 +50,7 @@ const LogIn = () => {
         queryKey:['allUser'],
         queryFn: async()=>{
             const res=await axiosSecure.get('/users')
+            setLoading(false)
             return res.data
         }
       })

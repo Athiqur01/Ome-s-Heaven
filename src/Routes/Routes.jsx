@@ -12,6 +12,8 @@ import MyProfile from "../Pages/DeshBoardPage/MyProfile/MyProfile";
 import Announcement from "../Pages/DeshBoardPage/Announcement/Announcement";
 import AdminProfile from "../Pages/DeshBoardPage/AdminProfile/AdminProfile";
 import AgreementReq from "../Pages/DeshBoardPage/AgreementReq/AgreementReq";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import ManageMember from "../Pages/DeshBoardPage/ManageMember/ManageMember";
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +40,7 @@ export const router = createBrowserRouter([
     },
     {
       path: "/deshBoard",
-      element: <DeshBoard></DeshBoard>,
+      element: <PrivateRoute><DeshBoard></DeshBoard></PrivateRoute>,
       children:[
         {
           path: "/deshBoard/myProfile",
@@ -55,6 +57,10 @@ export const router = createBrowserRouter([
         {
           path: "/deshBoard/agreementReq",
           element:<AgreementReq></AgreementReq>
+        },
+        {
+          path: "/deshBoard/manageMember",
+          element:<ManageMember></ManageMember>
         },
       ]
     }
