@@ -42,6 +42,7 @@ const MyProfile = () => {
     },[loggedUser?.email])
 
 
+   
     
    
 
@@ -106,6 +107,11 @@ const MyProfile = () => {
         <tr>
             <td>Agreement Request Date</td>
         <td>{agreementData?.agreementReqDate}</td>
+        </tr>
+
+        <tr>
+            <td>Agreement Accept Date:</td>
+        <td>{agreementData?.agreementAcceptDate}</td>
         </tr>
 
         <tr>

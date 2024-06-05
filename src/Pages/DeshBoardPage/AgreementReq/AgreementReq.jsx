@@ -3,17 +3,20 @@ import useAxiosSecure from "../../../assets/CustomHooks/useAxiosSecure/useAxiosS
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import { update } from "firebase/database";
 
 
 const AgreementReq = () => {
     const{setLoading}=useContext(AuthContext)
-
+    //const agreementAcceptDate = new Date();
+    //const status='checked'
     const axiosSecure=useAxiosSecure()
+    //console.log('date',agreementAcceptDate)
 
     
 
-    const {data:agreements, refetch,isLoading}=useQuery({
-        queryKey:['agreements'],
+    const {data:allAgreements, refetch,isLoading}=useQuery({
+        queryKey:['allAgreements'],
         queryFn: async()=>{
         const res=await axiosSecure.get('/agreement')
         setLoading(false)
@@ -21,6 +24,10 @@ const AgreementReq = () => {
         return res.data
         }
     })
+
+    const agreements=allAgreements?.filter(agreement=>agreement?.status==='pending')
+
+
     console.log(agreements)
 
     if(isLoading) return <span className="loading loading-bars loading-lg"></span>
@@ -39,10 +46,11 @@ const AgreementReq = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                const res=axiosSecure.delete(`/agreement/${id}`)
-               
+               console.log(res.data)
+               refetch()
                 if(res.data.deletedcount>0){
                    
-                 refetch()
+                 
                  
                  setLoading(false)
                     Swal.fire({
@@ -55,12 +63,14 @@ const AgreementReq = () => {
             }
           });
     }
+   
+    //const updateInfo={status,agreementAcceptDate}
 
     const handleAccept=(email)=>{
         axiosSecure.patch(`/agreement?email=${email}`)
         .then(res=>{
             if(res?.data?.modifiedCount>0){
-
+              refetch()
                 Swal.fire({
                     position: "top-center",
                     icon: "success",

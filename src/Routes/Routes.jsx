@@ -14,6 +14,7 @@ import AdminProfile from "../Pages/DeshBoardPage/AdminProfile/AdminProfile";
 import AgreementReq from "../Pages/DeshBoardPage/AgreementReq/AgreementReq";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import ManageMember from "../Pages/DeshBoardPage/ManageMember/ManageMember";
+import MakeAnnouncement from "../Pages/DeshBoardPage/MakeAnnouncement/MakeAnnouncement";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
         {
           path: "/deshBoard/manageMember",
           element:<ManageMember></ManageMember>
+        },
+        {
+          path: "/deshBoard/makeAnnouncement",
+          element:<MakeAnnouncement></MakeAnnouncement>
         },
       ]
     }

@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import useAxiosSecure from "../../../assets/CustomHooks/useAxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageMember = () => {
 
      const axiosSecure=useAxiosSecure()
 
-   const {data:users, isLoading}=useQuery({
+   const {data:users, isLoading,refetch}=useQuery({
     queryKey:['users'],
     queryFn: async()=>{
      const res=await axios.get('http://localhost:5020/allUsers')
@@ -31,6 +32,28 @@ const ManageMember = () => {
 // },[])
 
   // console.log('users',users)
+
+  const handleUserUpdate=(user)=>{
+    //console.log(email)
+    if(user?.userStatus==='member'){
+
+        axiosSecure.patch(`singleUser?email=${user?.email}`)
+    .then(res=>{
+        console.log(res.data)
+        refetch()
+
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Successfully user role updated",
+            showConfirmButton: false,
+            timer: 3500
+          });
+    })
+    }
+  }
+
+
     return (
         <div className="mx-auto">
 
@@ -56,7 +79,7 @@ const ManageMember = () => {
         <td>{user?.displayName}</td>
         <td>{user?.email }</td>
         <td>{user?.userStatus}</td>
-        <td className="hover "><AiFillDelete /></td>
+        <td className="hover "><button onClick={()=>handleUserUpdate(user)} className="btn btn-ghost text-xl"><AiFillDelete /></button></td>
         
       </tr>
         </>)
