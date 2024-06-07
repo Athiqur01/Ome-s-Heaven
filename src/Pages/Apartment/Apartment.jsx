@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import useLoggedUser from "../../assets/CustomHooks/useLoggedUser/useLoggedUser";
+import useApartment from "../../assets/CustomHooks/useApartment/useApartment";
 
 
 const Apartment = () => {
@@ -12,15 +13,17 @@ const Apartment = () => {
     const axiosSecure=useAxiosSecure()
     
 
-    const {data:apartment}=useQuery({
-        queryKey:['apartment'],
-        queryFn:async()=>{
-          setLoading(true)
-            const res=await axiosSecure.get('/apartment')
-            setLoading(false)
-            return res.data
-        }
-    })
+    // const {data:apartment}=useQuery({
+    //     queryKey:['apartment'],
+    //     queryFn:async()=>{
+    //       setLoading(true)
+    //         const res=await axiosSecure.get('/apartment')
+    //         setLoading(false)
+    //         return res.data
+    //     }
+    // })
+
+    const [apartment]=useApartment()
 
     
 

@@ -12,13 +12,18 @@ const AgreementReq = () => {
     //const status='checked'
     const axiosSecure=useAxiosSecure()
     //console.log('date',agreementAcceptDate)
-
+   
+    console.log(localStorage.getItem('access-token'))
     
 
     const {data:allAgreements, refetch,isLoading}=useQuery({
         queryKey:['allAgreements'],
         queryFn: async()=>{
-        const res=await axiosSecure.get('/agreement')
+        const res=await axiosSecure.get('/agreement',{
+          headers:{
+            authorization:`Bearer ${localStorage.getItem('access-token')}`
+          }
+        })
         setLoading(false)
 
         return res.data

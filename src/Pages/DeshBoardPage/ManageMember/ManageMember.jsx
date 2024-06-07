@@ -4,19 +4,27 @@ import { AiFillDelete } from "react-icons/ai";
 import useAxiosSecure from "../../../assets/CustomHooks/useAxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useUser from "../../../assets/CustomHooks/useUser/useUser";
 
 const ManageMember = () => {
 
-     const axiosSecure=useAxiosSecure()
+      const axiosSecure=useAxiosSecure()
 
-   const {data:users, isLoading,refetch}=useQuery({
-    queryKey:['users'],
-    queryFn: async()=>{
-     const res=await axios.get('http://localhost:5020/allUsers')
-     return res.data
-    },
+//    const {data:users, isLoading,refetch}=useQuery({
+//     queryKey:['users'],
+//     queryFn: async()=>{
+//      const res=await axios.get('http://localhost:5020/allUsers')
+//      return res.data
+//     },
     
-   })
+//    })
+
+
+const [users, isLoading,refetch]=useUser()
+//const filterUser=users.filter(user=>user.userStatus==='member')
+//console.log(filterUser.length)
+
+
 
    if(isLoading){
     return <>loading----</>

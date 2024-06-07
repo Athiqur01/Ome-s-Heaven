@@ -67,6 +67,7 @@ export const router = createBrowserRouter([
           path: "/deshBoard/makeAnnouncement",
           element:<MakeAnnouncement></MakeAnnouncement>
         },
+        
       ]
     }
   ]);
