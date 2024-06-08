@@ -6,30 +6,20 @@ import useAgreementData from '../../../assets/CustomHooks/useAgreementData/useAg
 import useAxiosSecure from '../../../assets/CustomHooks/useAxiosSecure/useAxiosSecure';
 import { useQueries, useQuery } from '@tanstack/react-query';
 
+
 const MyProfile = () => {
     
    const axiosSecure=useAxiosSecure()
    const [loggedUser]=useLoggedUser()
    const [agreementData, setAgreementData]=useState()
-   const {userStatus, setUserStatus,user,loading, setLoading}=useContext(AuthContext)
+   const {userStatus, setUserStatus,user,loading, setLoading,}=useContext(AuthContext)
+   //const [,agreementData]=useAgreementData()
+   console.log('kkkkkkk',agreementData)
    
    
 
     //console.log('logged-------',userStatus)
     
-
-    useEffect(()=>{
-      
-        axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
-        .then(res=>{
-            console.log('jjj',res.data)
-            setAgreementData(res.data)
-            setLoading(false)
-        })
-    },[loggedUser?.email])
-
-
-
 
     useEffect(()=>{
         
@@ -39,7 +29,19 @@ const MyProfile = () => {
             setUserStatus(res.data.userStatus)
             setLoading(false)
         })
-    },[loggedUser?.email])
+    },[loggedUser?.email,axiosSecure,setLoading,setUserStatus])
+
+
+    useEffect(()=>{
+      
+        axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
+        .then(res=>{
+            console.log('jjj',res.data)
+            setAgreementData(res.data)
+            setLoading(false)
+        })
+    },[loggedUser?.email,axiosSecure,setLoading,setUserStatus])
+
 
 
    

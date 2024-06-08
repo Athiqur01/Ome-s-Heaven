@@ -15,6 +15,7 @@ import AgreementReq from "../Pages/DeshBoardPage/AgreementReq/AgreementReq";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import ManageMember from "../Pages/DeshBoardPage/ManageMember/ManageMember";
 import MakeAnnouncement from "../Pages/DeshBoardPage/MakeAnnouncement/MakeAnnouncement";
+import MakePayment from "../Pages/DeshBoardPage/MakePayment/MakePayment";
 
 export const router = createBrowserRouter([
     {
@@ -66,6 +67,11 @@ export const router = createBrowserRouter([
         {
           path: "/deshBoard/makeAnnouncement",
           element:<MakeAnnouncement></MakeAnnouncement>
+        },
+        
+        {
+          path: "/deshBoard/makePayment",
+          element:<MakePayment></MakePayment>
         },
         
       ]

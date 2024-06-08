@@ -35,8 +35,8 @@ const DeshBoardPage = () => {
                 <div className=" min-h-screen bg-orange-100 pl-2 md:pl-6 lg:pl-10">
                 <h2 className="font-bold mt-4  py-6 lg:text-3xl"> Member Deshboard</h2>
                     <ul>
-                        <li className="font-bold flex items-center gap-2  lg:text-xl"><FaHouseUser /> <Link to="/deshBoard/MyProfile"> My Profile </Link></li>
-                        <li className="font-bold flex items-center gap-2  lg:text-xl"><MdPayment /> <Link to="/deshBoard/MyProfile"> Make payment </Link></li>
+                        <li className="font-bold flex items-center gap-2  lg:text-xl"><FaHouseUser /> <Link to="/deshBoard/myProfile"> My Profile </Link></li>
+                        <li className="font-bold flex items-center gap-2  lg:text-xl"><MdPayment /> <Link to="/deshBoard/makePayment"> Make payment </Link></li>
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><FaHistory /> <Link to="/deshBoard/MyProfile"> Payment History </Link></li>
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><GrAnnounce /> <Link to="/deshBoard/announcement">Announcements</Link> </li>
                         
