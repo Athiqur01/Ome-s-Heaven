@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 const axiosSecure=axios.create({
-    baseURL:'http://localhost:5020'
+    baseURL:'https://ome-heaven-server.vercel.app'
 })
 
 const useAxiosSecure = () => {

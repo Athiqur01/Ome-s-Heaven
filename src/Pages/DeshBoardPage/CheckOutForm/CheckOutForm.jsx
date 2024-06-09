@@ -4,18 +4,23 @@ import useAxiosSecure from "../../../assets/CustomHooks/useAxiosSecure/useAxiosS
 import useLoggedUser from "../../../assets/CustomHooks/useLoggedUser/useLoggedUser";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import "../CheckOutForm/styles/common.css"
+import Swal from "sweetalert2";
 
 
 
-const CheckOutForm = () => {
+const CheckOutForm = ({hadleChange}) => {
+  console.log('handle',hadleChange)
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError]=useState()
     const axiosSecure=useAxiosSecure()
+    const [transectionId,setTransectionId]=useState()
    
-    const [loggedUser]=useLoggedUser()
+    
     const [clientSecret,setClientSecret]=useState()
-    const {user}=useContext(AuthContext)
+    const {user,monthValue}=useContext(AuthContext)
+    
     //const [loading,user]=useContext(AuthContext)
 
     // useEffect(()=>{
@@ -47,8 +52,8 @@ const CheckOutForm = () => {
         if(price>0){
             axiosSecure.post("/create-payment-intent",{price})
         .then(res=>{
-            console.log(res.data?.clientSecret)
-            setClientSecret('client secret',res.data?.clientSecret)
+            
+            setClientSecret(res.data?.clientSecret)
         })
 
         }
@@ -88,9 +93,64 @@ const CheckOutForm = () => {
         setError('')
       }
 
+      //Confirm payment
+      console.log('client secret',clientSecret)
+      console.log('secret',clientSecret)
+      const {paymentIntent,error:confirmError}=await stripe.confirmCardPayment(clientSecret,{
+        payment_method:{
+            card:card,
+            billing_details:{
+                email:user?.email || 'Anonymous',
+                name:user?.displayName || 'Anonymous'
+            }
+        }
+      })
+      if(error){
+        console.log('Confirm error')
+      }
+
+      else{
+        console.log('PaymentIntent',paymentIntent)
+        if(paymentIntent?.status==="succeeded"){
+            console.log(paymentIntent.id)
+            setTransectionId(paymentIntent.id)
+
+        }
+      }
+
+      const payment={
+        email:user?.email,
+        floorNo:agreementData2?.floorNo,
+        blockName:agreementData2?.blockName,
+        apartmentNo:agreementData2?.apartmentNo,
+        rent:agreementData2?.rent,
+        agreementAcceptDate:agreementData2?.agreementAcceptDate,
+        fearForMonth:monthValue,
+        transectionId:transectionId
+    }
+    console.log(payment)
+
+    //post operation for payment data
+    axiosSecure.post("/payment",payment)
+    .then(res=>{
+      console.log(res.data)
+      if(res.data.insertedId){
+          Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "Payment is successful",
+              showConfirmButton: false,
+              timer: 3500
+            });
+
+      }
+    })
 
 
     }
+
+    
+
     return (
         <div>
             <form onSubmit={handleSubmit} >
@@ -110,10 +170,13 @@ const CheckOutForm = () => {
           },
         }}
       />
-      <button className="btn btn-primary" type="submit" disabled={!stripe || !clientSecret}>
-        Pay
+      <div >
+      <button onClick={handleSubmit}  className="btn btn-primary" type="submit" disabled={!stripe || !clientSecret}>
+       Confirm Payment
       </button>
+      </div>
       <p className="text-red-400">{error}</p>
+      {transectionId && <p className="bg-green-500">your transection id: {transectionId} </p>}
 
             </form>
             

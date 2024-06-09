@@ -13,7 +13,7 @@ const ManageMember = () => {
 //    const {data:users, isLoading,refetch}=useQuery({
 //     queryKey:['users'],
 //     queryFn: async()=>{
-//      const res=await axios.get('http://localhost:5020/allUsers')
+//      const res=await axios.get('https://ome-heaven-server.vercel.app/allUsers')
 //      return res.data
 //     },
     

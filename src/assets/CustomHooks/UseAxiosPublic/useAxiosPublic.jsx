@@ -1,6 +1,6 @@
 import axios from "axios"
 const axiosSecure=axios.create({
-    baseURL:'http://localhost:5020'
+    baseURL:'https://ome-heaven-server.vercel.app'
 })
 
 const useAxiosPublic = () => {

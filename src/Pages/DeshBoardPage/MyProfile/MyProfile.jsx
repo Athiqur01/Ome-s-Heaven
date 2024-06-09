@@ -4,17 +4,17 @@ import { AuthContext } from '../../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import useAgreementData from '../../../assets/CustomHooks/useAgreementData/useAgreementData';
 import useAxiosSecure from '../../../assets/CustomHooks/useAxiosSecure/useAxiosSecure';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 
 const MyProfile = () => {
     
    const axiosSecure=useAxiosSecure()
    const [loggedUser]=useLoggedUser()
-   const [agreementData, setAgreementData]=useState()
+   //const [agreementData, setAgreementData]=useState()
    const {userStatus, setUserStatus,user,loading, setLoading,}=useContext(AuthContext)
    //const [,agreementData]=useAgreementData()
-   console.log('kkkkkkk',agreementData)
+   //console.log('kkkkkkk',agreementData)
    
    
 
@@ -32,18 +32,29 @@ const MyProfile = () => {
     },[loggedUser?.email,axiosSecure,setLoading,setUserStatus])
 
 
-    useEffect(()=>{
+    // useEffect(()=>{
       
-        axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
-        .then(res=>{
-            console.log('jjj',res.data)
-            setAgreementData(res.data)
-            setLoading(false)
-        })
-    },[loggedUser?.email,axiosSecure,setLoading,setUserStatus])
+    //     axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
+    //     .then(res=>{
+    //         console.log('jjj',res.data)
+    //         setAgreementData(res.data)
+    //         setLoading(false)
+    //     })
+    // },[loggedUser?.email,axiosSecure,setLoading,setUserStatus])
 
 
+    const {data:agreementData,refetch}=useQuery({
+        queryKey:['agreementData'],
+        queryFn: async()=>{
+            const res=await axiosSecure.get(`/agreementInfo?email=${user?.email}`)
+            return res.data
+        }
+    })
 
+    
+    if(!agreementData?.rent){
+        refetch()
+    }
    
     
    

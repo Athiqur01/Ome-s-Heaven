@@ -7,21 +7,33 @@ import axios from "axios";
 
 const useLoggedUser = () => {
 
-    const {loading,user,setLoading}=useContext(AuthContext)
-    const [loggedUser, setloggeduser]=useState(null)
+    const {user}=useContext(AuthContext)
 
-    useEffect(()=>{
+    const {data:loggedUser,refetch,isLoading}=useQuery({
+        queryKey:['loggedUser'],
+        queryFn: async()=>{
+            const res=await axios.get(`https://ome-heaven-server.vercel.app/users?email=${user?.email}`)
+            return res.data
+        }
+    })
+
+
+   // const [loggedUser, setloggeduser]=useState(null)
+
+    // useEffect(()=>{
         
-        axios.get(`http://localhost:5020/users?email=${user?.email}`)
-        .then(res=>{
-            //console.log(res.data)
-            setloggeduser(res.data)
-            setLoading(false)
-        })
+    //     axios.get(`https://ome-heaven-server.vercel.app/users?email=${user?.email}`)
+    //     .then(res=>{
+    //         //console.log(res.data)
+    //         setloggeduser(res.data)
+    //         setLoading(false)
+    //     })
 
-    },[user?.email,setLoading])
+    // },[user?.email,setLoading])
 
-    return [loggedUser]
+   
+
+    return [loggedUser,refetch,isLoading]
 };
 
 export default useLoggedUser;

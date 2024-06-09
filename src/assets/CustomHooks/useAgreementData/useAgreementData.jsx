@@ -22,7 +22,7 @@ const useAgreementData = () => {
        }
        console.log('higi---',agreementDate)
 
-    return [refetch,agreementDate]
+    return [refetch,agreementDate,user]
 };
 
 export default useAgreementData;

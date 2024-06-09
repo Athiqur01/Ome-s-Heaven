@@ -7,6 +7,7 @@ import { RiCoupon2Fill } from "react-icons/ri";
 import { SiLibreofficewriter } from "react-icons/si";
 import { MdManageAccounts,MdPayment } from "react-icons/md";
 import useLoggedUser from "../../assets/CustomHooks/useLoggedUser/useLoggedUser";
+import { FaHome } from "react-icons/fa";
 
 
 const DeshBoardPage = () => {
@@ -23,6 +24,11 @@ const DeshBoardPage = () => {
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><GrAnnounce /> <Link to="/deshBoard/announcement">Announcements</Link> </li>
                         
                     </ul>
+                    <div>
+                        <ul >
+                            <li >Home</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         );
@@ -41,6 +47,11 @@ const DeshBoardPage = () => {
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><GrAnnounce /> <Link to="/deshBoard/announcement">Announcements</Link> </li>
                         
                     </ul>
+                    <Link to="/"><div className="font-bold gap-2  lg:text-xl flex items-center">
+                        <div><FaHome /></div>
+                        <div>Home</div>
+                    </div></Link>
+
                 </div>
             </div>
         );

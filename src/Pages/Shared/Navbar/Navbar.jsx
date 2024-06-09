@@ -10,7 +10,25 @@ const Navbar = () => {
     const {user, logOut,loading,setLoading}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
 
-    const [loggedUser]=useLoggedUser()
+    const [loggedUser,refetch,isLoading]=useLoggedUser()
+     
+    if(!loggedUser ){
+      refetch()
+    }
+ 
+    if(isLoading){
+      refetch()
+      return <p>Loading----</p>
+      
+    }
+
+    
+
+
+    
+
+
+
 
     // const {refetch, data:loggedUser2}=useQuery({
     //     queryKey:['loggedUser2'],
