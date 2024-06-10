@@ -66,9 +66,9 @@ const DeshBoardPage = () => {
                     <ul>
                         <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><FaHouseUser /> <Link to="/deshBoard/adminProfile"> Admin Profile </Link></li>
                         <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><MdManageAccounts /> <Link to="/deshBoard/manageMember"> Manage Members </Link></li>
-                        <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><GrAnnounce /> <Link to="/deshBoard/makeAnnouncement">Make Announcement</Link> </li>
+                        <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><GrAnnounce /> <Link to="/deshBoard/makeAnnouncement">Make  Announcement</Link> </li>
                         <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><SiLibreofficewriter /> <Link to="/deshBoard/agreementReq">Agreement Requests</Link> </li>
-                        <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><RiCoupon2Fill /> <Link to="/deshBoard/announcement">Manage Coupon</Link> </li>
+                        <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><RiCoupon2Fill /> <Link to="/deshBoard/manageCoupon">Manage Coupon</Link> </li>
                         
                     </ul>
                 </div>

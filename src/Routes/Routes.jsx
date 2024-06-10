@@ -17,6 +17,7 @@ import ManageMember from "../Pages/DeshBoardPage/ManageMember/ManageMember";
 import MakeAnnouncement from "../Pages/DeshBoardPage/MakeAnnouncement/MakeAnnouncement";
 import MakePayment from "../Pages/DeshBoardPage/MakePayment/MakePayment";
 import PaymentHistory from "../Pages/DeshBoardPage/PaymentHistory/PaymentHistory";
+import ManageCoupon from "../Pages/DeshBoardPage/ManageCoupon/ManageCoupon";
 
 export const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
         {
           path: "/deshBoard/makePayment",
           element:<MakePayment></MakePayment>
+        },
+        {
+          path: "/deshBoard/manageCoupon",
+          element:<ManageCoupon></ManageCoupon>
         },
         {
           path: "/deshBoard/paymentHistory",
