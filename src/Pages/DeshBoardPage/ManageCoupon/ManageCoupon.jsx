@@ -128,7 +128,7 @@ const ManageCoupon = () => {
 
             <div>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="btn btn-primary mr-4" onClick={()=>document.getElementById('my_modal_1').showModal()}>Add Coupon</button>
+<div className=""><button className="btn btn-primary ml-4 my-8 " onClick={()=>document.getElementById('my_modal_1').showModal()}>Add Coupon</button></div>
 <dialog id="my_modal_1" className="modal">
   <div className="modal-box">
   <div className="card shrink-0   bg-base-100 w-full lg:w-1/2 ">

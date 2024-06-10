@@ -41,11 +41,17 @@ const MakePayment = () => {
   
 
     const hadleChange=()=>{
+
+        
+        //const couponValue=e.target.applyCoupon?.value 
+        
+        const value=document.getElementById('applyCoupon')?.value
+        console.log('kiki',value)
+
         const monthElement = document.getElementById('pick');
         const monthValue = monthElement.innerText;
         setMonthValue(monthValue)
-       
-            console.log(`Selected Month: ${monthValue}`);
+        console.log(`Selected Month: ${monthValue}`);
         
     }
     
@@ -145,6 +151,11 @@ const MakePayment = () => {
 
              {/* month picker end */}
        </td>
+       </tr>
+
+       <tr>
+           <td>Apply Coupon</td>
+       <td ><div className="w-60"><input name="applyCoupon" id="applyCoupon"  type="text" placeholder="Apply Coupon" /></div></td>
        </tr>
 
        

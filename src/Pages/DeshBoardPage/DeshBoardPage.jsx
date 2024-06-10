@@ -61,7 +61,7 @@ const DeshBoardPage = () => {
     if(loggedUser?.userStatus==='admin'){
         return (
             <div >
-                <div className=" min-h-screen bg-orange-100 pl-2 md:pl-6 lg:pl-10">
+                <div className=" min-h-screen bg-orange-100 pl-2 md:pl-6 lg:pl-8">
                 <h2 className="font-bold mt-4  py-6 lg:text-3xl">Admin Deshboard</h2>
                     <ul>
                         <li className="font-bold flex items-center gap-2  lg:text-xl py-1"><FaHouseUser /> <Link to="/deshBoard/adminProfile"> Admin Profile </Link></li>
