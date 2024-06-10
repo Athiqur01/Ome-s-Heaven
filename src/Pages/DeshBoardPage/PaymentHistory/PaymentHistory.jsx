@@ -53,7 +53,7 @@ const PaymentHistory = () => {
     console.log(monthValue)
 
     const history=payHistory?.find(pay=>pay?.fearForMonth===monthValue)
-    console.log('his',history)
+    console.log('his',payHistory)
     
 
 
@@ -71,30 +71,32 @@ const PaymentHistory = () => {
         
       </tr>
     </thead>
-    {history? <><tr className="bg-base-200">
-      <th>1</th>
-      <td>{history?.rent}</td>
-      <td>{history?.fearForMonth}</td>
-      
-    </tr></> :
+    
     <tbody>
-    {/* row 1 */}
-    {payHistory?.map((index,payHis)=><>
-      <tr className="bg-base-200">
-      <th>{index+1}</th>
-      <td>{payHis?.rent}</td>
-      <td>{payHis?.fearForMonth}</td>
-      
-    </tr>
+        {history? <>
+            <tr className="bg-base-200">
+        <th></th>
+        <td>{history?.rent}</td>
+        <td>{history?.fearForMonth}</td>
+        
+      </tr>
+        </> :<>
+        {/* all payment history start */}
+    {payHistory?.map((payHis)=><>
+        <tr className="bg-base-200">
+        <th></th>
+        <td>{payHis?.rent}</td>
+        <td>{payHis?.fearForMonth}</td>
+        
+      </tr>
+      </>)}
+      {/* all payment history end*/}
+        </>
+        }
+    
 
-
-    </>)}
-    
-    {/* row 2 */}
-    
-    
   </tbody>
-    }
+    
   </table>
 </div>
 
