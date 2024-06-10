@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../assets/CustomHooks/useAxiosSecure/useAxiosSecure";
 import useLoggedUser from "../../../assets/CustomHooks/useLoggedUser/useLoggedUser";
+import userLogo from "../Navbar/asset/pngwing.com.png"
 const Navbar = () => {
 
     const {user, logOut,loading,setLoading}=useContext(AuthContext)
@@ -90,7 +91,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end pr- text-lg relative">
-    {user?<><img onClick={handleDownOperation} className="rounded-full  w-14  h-14 " src={loggedUser?.photoURL} alt="" /> </>  :<><NavLink to="/logIn">LogIn</NavLink> </>}
+    {user?<><img onClick={handleDownOperation} className="rounded-full  w-14  h-14 " src={loggedUser?.photoURL} alt={userLogo} /> </>  :<><NavLink to="/logIn">LogIn</NavLink> </>}
     <div id="drop-down" className="bg-[#100F6C] rounded-b-md z-10 absolute w-48 md:w-60 lg:w-64 mt-[270px] md:mt-[270px] lg:mt-[272px] duration-1000 delay-1000 hidden ">
         <ul onClick={handleUpOperation} className="p-4 font-bold">
             <button className="btn btn-ghost w-full text-left"><li>{loggedUser?.displayName}</li></button>
