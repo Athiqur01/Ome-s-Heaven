@@ -47,8 +47,6 @@ const MakePayment = () => {
        
             console.log(`Selected Month: ${monthValue}`);
         
-        
-
     }
     
 

@@ -43,7 +43,7 @@ const DeshBoardPage = () => {
                     <ul>
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><FaHouseUser /> <Link to="/deshBoard/myProfile"> My Profile </Link></li>
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><MdPayment /> <Link to="/deshBoard/makePayment"> Make payment </Link></li>
-                        <li className="font-bold flex items-center gap-2  lg:text-xl"><FaHistory /> <Link to="/deshBoard/MyProfile"> Payment History </Link></li>
+                        <li className="font-bold flex items-center gap-2  lg:text-xl"><FaHistory /> <Link to="/deshBoard/paymentHistory"> Payment History </Link></li>
                         <li className="font-bold flex items-center gap-2  lg:text-xl"><GrAnnounce /> <Link to="/deshBoard/announcement">Announcements</Link> </li>
                         
                     </ul>
