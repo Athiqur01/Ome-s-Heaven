@@ -33,7 +33,7 @@ const AgreementReq = () => {
     const agreements=allAgreements?.filter(agreement=>agreement?.status==='pending')
 
 
-    console.log(agreements)
+    //console.log(agreements)
 
     if(isLoading) return <span className="loading loading-bars loading-lg"></span>
 
@@ -51,7 +51,7 @@ const AgreementReq = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                const res=axiosSecure.delete(`/agreement/${id}`)
-               console.log(res.data)
+               //console.log(res.data)
                refetch()
                 if(res.data.deletedcount>0){
                    

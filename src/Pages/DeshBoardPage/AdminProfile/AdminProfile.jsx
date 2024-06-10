@@ -34,7 +34,7 @@ const AdminProfile = () => {
       
         axiosSecure.get(`/agreementInfo?email=${loggedUser?.email}`)
         .then(res=>{
-            console.log('jjj',res.data)
+            //console.log('jjj',res.data)
             setAgreementData(res.data)
             setLoading(false)
         })
@@ -47,7 +47,7 @@ const AdminProfile = () => {
         
         axiosSecure.get(`/users?email=${loggedUser?.email}`)
         .then(res=>{
-            console.log('kk',res.data.userStatus)
+            //console.log('kk',res.data.userStatus)
             setUserStatus(res.data.userStatus)
             setLoading(false)
         })

@@ -77,11 +77,11 @@ const LogIn = () => {
           axiosSecure.post("/users",userData)
           .then(res=>{
             console.log(res.data)
-            if(res.data.insertedId){
+            if(res.data){
                 Swal.fire({
                     position: "top-center",
                     icon: "success",
-                    title: "Register is successful",
+                    title: "Login is successful",
                     showConfirmButton: false,
                     timer: 3500
                   });

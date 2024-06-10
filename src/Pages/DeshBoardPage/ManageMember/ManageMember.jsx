@@ -30,7 +30,7 @@ const [users, isLoading,refetch]=useUser()
     return <>loading----</>
    }
 
-   console.log('iiii',users)
+   //console.log('iiii',users)
 
 // useEffect(()=>{
 //     axiosSecure.get("/allUsers")

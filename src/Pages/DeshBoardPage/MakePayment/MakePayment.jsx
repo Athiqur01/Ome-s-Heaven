@@ -46,12 +46,12 @@ const MakePayment = () => {
         //const couponValue=e.target.applyCoupon?.value 
         
         const value=document.getElementById('applyCoupon')?.value
-        console.log('kiki',value)
+        //console.log('kiki',value)
 
         const monthElement = document.getElementById('pick');
         const monthValue = monthElement.innerText;
         setMonthValue(monthValue)
-        console.log(`Selected Month: ${monthValue}`);
+       // console.log(`Selected Month: ${monthValue}`);
         
     }
     

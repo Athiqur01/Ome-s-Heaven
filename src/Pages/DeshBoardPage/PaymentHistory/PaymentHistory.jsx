@@ -46,14 +46,14 @@ const PaymentHistory = () => {
         const monthValue = monthElement.innerText;
         setMonthValue(monthValue)
        
-            console.log(`Selected Month: ${monthValue}`);
+            //console.log(`Selected Month: ${monthValue}`);
         
     }
 
-    console.log(monthValue)
+    //console.log(monthValue)
 
     const history=payHistory?.find(pay=>pay?.fearForMonth===monthValue)
-    console.log('his',payHistory)
+    //console.log('his',payHistory)
     
 
 
