@@ -8,10 +8,11 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../assets/CustomHooks/useAxiosSecure/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const LogIn = () => {
 
-    const {loginUser,setLoading,setUser,user}=useContext(AuthContext)
+    const {loginUser,setLoading,setUser,user,createGoogleUser}=useContext(AuthContext)
     const axiosSecure=useAxiosSecure()
     const queryClient = new QueryClient()
     const location=useLocation()
@@ -54,6 +55,44 @@ const LogIn = () => {
             return res.data
         }
       })
+
+      
+
+      const handleGoogleSignIn=()=>{
+
+        createGoogleUser()
+        .then(result=>{
+        setUser(result.user)
+
+        const email=result?.user?.email
+      const displayName=result?.user?.displayName
+      const photoURL=result?.user?.photoURL
+      const userStatus='user'
+
+      const userData={email,displayName,photoURL,userStatus} 
+      console.log(userData)
+
+        if(result.user){
+                
+          axiosSecure.post("/users",userData)
+          .then(res=>{
+            console.log(res.data)
+            if(res.data.insertedId){
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Register is successful",
+                    showConfirmButton: false,
+                    timer: 3500
+                  });
+
+            }
+          })
+
+    }
+        setLoading(false)
+        })
+      }
 
       
 
@@ -107,6 +146,13 @@ const LogIn = () => {
       <div className=" flex gap-2 items-center justify-center pb-6">
         <small>New user? Please</small> 
         <Link to="/register"><p className="text-blue-700 font-bold">Register</p></Link>
+      </div>
+      <div>
+      <div className="flex justify-center gap-4 pb-8">
+                        <button onClick={handleGoogleSignIn}   className="pr-4 text-2xl"><FaGoogle /></button>
+                        <button className="pl-4 text-2xl"><FaGithub /></button>
+                    
+                    </div>
       </div>
     </div>
   </div>
