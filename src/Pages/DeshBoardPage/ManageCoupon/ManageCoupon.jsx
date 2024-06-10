@@ -21,7 +21,7 @@ const ManageCoupon = () => {
     //const userStatus='user'
 
     const axiosSecure=useAxiosSecure()
-    const {data:coupons}=useQuery({
+    const {data:coupons,refetch}=useQuery({
         queryKey:['coupons'],
         queryFn: async()=>{
             const res=await axiosSecure.get('/coupon')
@@ -62,13 +62,73 @@ const ManageCoupon = () => {
         
       }
 
+      const handleDelete=id=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+               const res=axiosSecure.delete(`/coupon/${id}`)
+               console.log(res.data)
+               refetch()
+                if(res.data.deletedcount>0){
+                   
+                 
+                 
+                 
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+
+                }
+            }
+          });
+      }
+
 
 
     return (
         <div>
+
+            <div>
+            <div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th></th>
+        <th>Coupon</th>
+        <th>Discount</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* row 1 */}
+      {
+        coupons?.map(coupon=><>
+        <tr className="bg-base-200">
+        <th></th>
+        <td>{coupon?.copunCode}</td>
+        <td>{coupon?.discountPercentage} %</td>
+        <td><button onClick={()=>handleDelete(coupon?._id)} className="btn btn-ghost">Delete</button></td>
+      </tr>
+        </>)
+      }
+    </tbody>
+  </table>
+</div>
+            </div>
+
             <div>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="btn btn-primary" onClick={()=>document.getElementById('my_modal_1').showModal()}>Add Coupon</button>
+<button className="btn btn-primary mr-4" onClick={()=>document.getElementById('my_modal_1').showModal()}>Add Coupon</button>
 <dialog id="my_modal_1" className="modal">
   <div className="modal-box">
   <div className="card shrink-0   bg-base-100 w-full lg:w-1/2 ">
