@@ -1,8 +1,14 @@
-# React + Vite
+It is an automatic Building Management System (BMS) application. Key features are:
+1.Automated reminders and online payment options improve rent collection rates and cash flow consistency.
+2. Vacancy and occupancy are easily traceable for large building
+3. Customer can book apartment remotely.
+4. Techologies have been used: React, Javascript, Tailwind CSS, Mongodb, Firebase, Node Js, Express Js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+To run the application locally follow these steps:
+1.Clone the repository: git clone https://github.com/Athiqur01/Ome-s-Heaven.git
+2. Navigate into the repository directory: cd repository
+3. npm install or yarn install
+4. npm start or yarn start
+5. npm run build or yarn build
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
